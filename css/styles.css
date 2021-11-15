@@ -1,0 +1,782 @@
+/*
+=============== 
+Fonts
+===============
+*/
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
+
+/*
+=============== 
+Variables
+===============
+*/
+
+:root {
+  /* dark shades of primary color*/
+  --clr-primary-1: hsl(184, 91%, 17%);
+  --clr-primary-2: hsl(185, 84%, 25%);
+  --clr-primary-3: hsl(185, 81%, 29%);
+  --clr-primary-4: hsl(184, 77%, 34%);
+  /* primary/main color */
+  --clr-primary-5: hsl(185, 62%, 45%);
+  /* lighter shades of primary color */
+  --clr-primary-6: hsl(185, 57%, 50%);
+  --clr-primary-7: hsl(184, 65%, 59%);
+  --clr-primary-8: hsl(184, 80%, 74%);
+  --clr-primary-9: hsl(185, 94%, 87%);
+  --clr-primary-10: hsl(186, 100%, 94%);
+  /* darkest grey - used for headings */
+  --clr-grey-1: hsl(209, 61%, 16%);
+  --clr-grey-2: hsl(211, 39%, 23%);
+  --clr-grey-3: hsl(209, 34%, 30%);
+  --clr-grey-4: hsl(209, 28%, 39%);
+  /* grey used for paragraphs */
+  --clr-grey-5: hsl(210, 22%, 49%);
+  --clr-grey-6: hsl(209, 23%, 60%);
+  --clr-grey-7: hsl(211, 27%, 70%);
+  --clr-grey-8: hsl(210, 31%, 80%);
+  --clr-grey-9: hsl(212, 33%, 89%);
+  --clr-grey-10: hsl(210, 36%, 96%);
+  --clr-white: #fff;
+  --ff-primary: "Lato", sans-serif;
+  --transition: all 0.3s linear;
+  --spacing: 0.25rem;
+  --radius: 0.5rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+/*
+=============== 
+Global Styles
+===============
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--ff-primary);
+  background: var(--clr-white);
+  color: var(--clr-grey-1);
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+
+/* img {
+  width: 100%;
+  display: block;
+} */
+
+/* what below line means is that select all the images but not the image that have class .nav-logo and apply below styles because our nav-logo was expanding to width of 100% which we don't want */
+img:not(.nav-logo) {
+  width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 0.875rem;
+}
+p {
+  margin-bottom: 1.25rem;
+  color: var(--clr-grey-5);
+}
+@media screen and (min-width: 800px) {
+  body {
+    font-size: 1rem;
+  }
+  h1 {
+    font-size: 4rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 1.75rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 1;
+  }
+}
+/*  global classes */
+
+.btn {
+  text-transform: uppercase;
+  background: var(--clr-primary-5);
+  color: var(--clr-white);
+  padding: 0.375rem 0.75rem;
+  letter-spacing: var(--spacing);
+  display: inline-block;
+  /* font-weight: 700; */
+  transition: var(--transition);
+  font-size: 0.875rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.btn:hover {
+  color: var(--clr-primary-1);
+  background: var(--clr-primary-8);
+}
+
+/* more global classes */
+.section {
+  padding: 5rem 0;
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.section-title h2 {
+  text-transform: uppercase;
+}
+.section-title span {
+  color: var(--clr-primary-5);
+}
+/* for small screen i want my sectino section to take 90% of screen width */
+.section-center {
+  width: 90vw;
+  margin: 0 auto; /*horizontal centering of bclock level elements*/
+  max-width: 1170px; /*once we move to bibber screen my wx-width would not be more than 1170px*/
+}
+
+/* now once i move 992 pixel i want my section section should a width of 95% of screen */
+@media screen and (min-width: 992px) {
+  .section-center {
+    width: 95vw;
+  }
+}
+/* end of more global classes */
+
+/*
+=============== 
+Navbar
+===============
+*/
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--clr-white);
+  box-shadow: var(--dark-shadow);
+  z-index: 2; /*because some images were hiding my navbar*/
+}
+
+/* now i want to hide my nav icons on smaller screen */
+.nav-icons {
+  display: none;
+}
+
+/* now i want to center my nav-center for bigger screen */
+.nav-center {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto; /* HORIZONTAL CENTERING of nav center*/
+}
+
+/* now i am going to put my nav header in display flex for smaller screen and put them apart */
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+/* now am going to work on toggle button */
+.nav-toggle {
+  background: transparent;
+  border: transparent;
+  font-size: 1.5rem;
+  color: var(--clr-primary-5);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.nav-toggle:hover {
+  transform: scale(1.2);
+}
+/* now am going to work on nav links */
+.nav-link {
+  display: block; /*since it is inline element*/
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  text-transform: capitalize;
+  letter-spacing: var(--spacing);
+  color: var(--clr-grey-1);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.nav-link:hover {
+  background: var(--clr-primary-8);
+  color: var(--clr-grey-1);
+  padding-left: 2.25rem; /*note here we wanted to added a padding of o.25rem but we have added padding of 2.25rem because we have a padding of already 2rem left in above nav link class.*/
+}
+
+/* now i am going to developers mode to see the actual height of nav links which is 280px */
+
+/* now on initial screen am goint to hide my nav link by making the height of my nav links to 0 */
+.nav-links {
+  height: 0;
+  /* now after this step we will observe that our height of container is zero but the content inside the container are overflowing and they are not hidden so to hide them we have to use overflow hidden */
+  overflow: hidden;
+  transition: var(--transition); /*to make the transition smooth*/
+}
+/* now we are going to make one class to show our nav links when we click on our toggle button */
+.show-links {
+  height: 280px;
+}
+/* now i am going to work for bigger screen navbar where i will hide toggle button andd will show logo, links and icons and this am going to do whenwver my screen size is minimum of 992px*/
+@media screen and (min-width: 992px) {
+  .navbar {
+    padding: 1rem 2rem;
+  }
+  /* hide toggle button */
+  .nav-toggle {
+    display: none;
+  }
+  /* now am targeting my nav-center flexbox to have my logo, link and icons in column layout */
+  .nav-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* optional */
+    flex-wrap: wrap;
+  }
+  /* now am targeting my nav-links container and am going to display them in column layout */
+  .nav-links {
+    display: flex;
+    /* after this line we were having our links in the center but the height of our links is coming as 280px and if set them to zero they are going to hide and i don't want them that's why am going to keep my links height as auto so that they will get their heigh from container. */
+    height: auto;
+  }
+  /*removing padding of nav-header and nav-link which i added for smaller screen */
+  .nav-header {
+    padding: 0 0;
+  }
+  .nav-link {
+    padding: 0 0;
+    margin-right: 0.7rem;
+  }
+  .nav-link:hover {
+    padding: 0;
+    color: var(--clr-primary-5);
+    background: transparent;
+  }
+  /* now i want to show my nav icons on bigger screen */
+  .nav-icons {
+    display: flex;
+  }
+  .nav-icon {
+    margin-right: 0.7rem;
+    color: var(--clr-primary-5);
+    font-size: 1.2rem;
+    transition: var(--transition);
+  }
+  .nav-icon:hover {
+    color: var(--clr-primary-8);
+  }
+}
+
+/*
+=============== 
+Hero
+===============
+*/
+.hero {
+  min-height: 100vh;
+  background: var(--clr-primary-5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-banner {
+  text-align: center;
+  color: var(--clr-white);
+  padding: 0 3rem;
+}
+.hero-banner h1 {
+  text-transform: uppercase;
+}
+.hero-banner p {
+  max-width: 35rem;
+  /*horizontal centering of block level elements*/
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--clr-white);
+  letter-spacing: var(--spacing);
+}
+.hero-btn {
+  padding: 0.9rem 1.6rem;
+  font-size: 1.25rem;
+  background: var(--clr-white);
+  color: var(--clr-primary-5);
+}
+.hero-btn:hover {
+  /* opacity: 0; */ /*here we have not used opacity because it hides the element not made it transparent hence we are using background transparent*/
+  background: transparent;
+  color: var(--clr-white);
+  border-color: var(--clr-white);
+}
+
+/* now on small screen we had background color as we dont want to force some image to shrink and fit in small screen as in that way the image will not look great */
+@media screen and (min-width: 768px) {
+  .hero {
+    background: linear-gradient(rgb(44, 174, 186, 0.7), rgba(0, 0, 0, 0.7)),
+      url("../images/main.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  /* now as soon as i move to bigger screen i want to remove extra added padding for small screen and also for <p> tag am going to increase its width size */
+  .hero-banner {
+    padding: 0;
+  }
+  .hero-banner p {
+    max-width: 45rem;
+  }
+}
+
+/*
+=============== 
+About
+===============
+*/
+
+/* NOTE :: before adding css to about section we decleared 3 global styles for section and they are listed below */
+/* 
+1.section
+2.section-title
+3.section-center 
+*/
+
+/*to have some space between this 2 artices for smaller screen  */
+.about-img,
+.about-info {
+  margin-bottom: 2rem;
+}
+
+/* now i am going to set 2 column layout once we cross our screen size more than 992 pixels using flexbox */
+@media screen and (min-width: 992px) {
+  .about-center {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /*this is optional here as we are using media query to set 2 column layout*/
+  }
+  /* now we want to center our flex-items and also will set some width for them along with spacing between them */
+  .about-img,
+  .about-info {
+    flex: 0 0 calc(50% - 2rem);
+    /* now after applying this there was no spacing coming between the flex-items thats why we are going to use now justify-content on parent(flex-container) */
+
+    /* OR we can write like this also*/
+    /* flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: calc(50% - 2rem); */
+
+    margin-bottom: 0; /*removing this margin as we added margin between items when we were on small screen now this is creating some extra margin bottom hence removing it*/
+
+    /* now i want to place my items in center */
+    align-self: center;
+  }
+}
+@media screen and (min-width: 1170px) {
+  /* here am going to place my pseudo content relative to about-img not about-center hence making about image relative below*/
+  .about-img {
+    position: relative;
+  }
+  .about-img::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 0.5rem solid var(--clr-primary-5);
+    /* now after all this styles we will find that our box is having bigger size than our img though we have placed it relative with img so to fit it properly we have to use box-sizing:border-box; also in browser reset we have mentioned box sizing but out pseudo elements are not inheriting them*/
+    box-sizing: border-box;
+    top: -1.5rem;
+    left: -1.5rem;
+    z-index: -1; /*OR we can use below commented about-photo postion-relative*/
+  }
+  /* .about-photo {
+    position: relative;
+  } */
+}
+/*
+=============== 
+Services
+===============
+*/
+.services {
+  background: var(--clr-grey-10);
+}
+.service {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.service-icon {
+  background: var(--clr-primary-5);
+  color: var(--clr-primary-1);
+  padding: 0.5rem;
+  font-size: 2rem;
+  display: inline-block; /*to apply margin we have to make it block level element*/
+  margin-bottom: 1.5rem;
+}
+.service-text {
+  max-width: 20rem;
+  /*horizontal centering of block level elements*/
+  margin-left: auto;
+  margin-right: auto;
+}
+/* now i want my flex-items to have 2 column layout when my screen size is minimumn of 576px */
+@media screen and (min-width: 576px) {
+  .services-center {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .service {
+    flex: 0 0 calc(50% - 1rem); /*here we are mentioning that our service card will have the width of 50%*/
+    margin-bottom: 1rem;
+  }
+}
+/* now i want my flex-items to have 3 column layout when my screen size is minimumn of 992px */
+@media screen and (min-width: 992px) {
+  .services-center {
+    /*now services section is optional here as we have already wrote it in above media query*/
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .service {
+    flex: 0 0 calc(33.33% - 1rem); /*here we are mentioning that our service card will have the width of 33.33%*/
+    margin-bottom: 0;
+  }
+}
+/* now i want my service to have 2 column layout when my screen size is minimumn of 1170px where my service icon should come in 1st column and my service-info should come in 2nd column */
+@media screen and (min-width: 1170px) {
+  .service {
+    display: flex;
+    text-align: left;
+    /* align-items: flex-start; */
+  }
+  .service-icon {
+    align-self: flex-start;
+  }
+  .service-info {
+    padding-left: 1rem;
+  }
+  .service-title {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/*
+=============== 
+Featured Tours
+===============
+*/
+
+.tour-card {
+  transition: var(--transition);
+  background: var(--clr-grey-10);
+  box-shadow: var(--light-shadow);
+  margin-bottom: 2rem;
+}
+.tour-card:hover {
+  box-shadow: var(--dark-shadow);
+  transform: scale(1.02);
+}
+.tour-image-container {
+  position: relative;
+}
+.tour-img {
+  height: 15rem;
+  /* since we have given some height to our image, this will stretch out our image so we are going to use object fit now */
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.tour-date {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 0;
+  background: var(--clr-primary-8);
+  color: var(--clr-primary-1);
+  text-transform: capitalize;
+  padding: 0.25rem 0.5rem;
+}
+.tour-info {
+  padding: 1.25rem 1.5rem;
+}
+.tour-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.tour-footer p {
+  line-height: 0;
+  margin-bottom: 0;
+  text-transform: capitalize;
+  color: var(--clr-primary-5);
+}
+.tour-btn {
+  text-align: center;
+}
+/* now i am going to set 2 column layout for my tour cards my my screen width is minimun of 768px */
+@media screen and (min-width: 768px) {
+  .featured-center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .tour-card {
+    flex: 0 0 calc(50% - 2rem); /*here we are mentioning that our service card will have the width of 50%*/
+  }
+}
+/* now i am going to set 3 column layout for my tour cards my my screen width is minimun of 1170px */
+@media screen and (min-width: 1170px) {
+  .featured-center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .tour-card {
+    flex: 0 0 calc(33.33% - 2rem); /*here we are mentioning that our service card will have the width of 33.33%*/
+
+    /* OR we can write like this also*/
+    /* flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: calc(33.33% - 1rem); */
+  }
+}
+
+/* OPTIONAL */
+/* new disign for tour card one where am placing days of tour in sideways of tour title */
+.tour-title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.tour-title p,
+.tour-title h4 {
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+.tour-title p {
+  color: var(--clr-grey-7);
+}
+
+/*
+=============== 
+Contact
+===============
+*/
+.contact {
+  background: var(--clr-primary-5);
+}
+.contact-title h3 {
+  color: var(--clr-white);
+}
+.contact-title p {
+  color: var(--clr-primary-8);
+}
+/* now we are going to set the 2 column layout for input and submit button */
+.contact-form {
+  display: flex;
+  max-width: 28rem;
+}
+.form-control {
+  flex: 1 1 auto; /*here am strecthing my input to cover the screen width max width of 28rem*/
+  color: var(--clr-grey-5);
+}
+.form-control,
+.btn-submit {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 300;
+  letter-spacing: var(--spacing);
+  background: var(--clr-white);
+  text-transform: capitalize;
+  border: transparent;
+}
+.form-control::-webkit-input-placeholder {
+  color: inherit;
+}
+.form-control::-moz-placeholder {
+  color: inherit;
+}
+.form-control:-ms-input-placeholder {
+  color: inherit;
+}
+.form-control::-ms-input-placeholder {
+  color: inherit;
+}
+.form-control::placeholder {
+  color: inherit;
+}
+.btn-submit {
+  font-family: var(--ff-primary);
+  margin-left: 0.5rem;
+  background: var(--clr-primary-8);
+  color: var(--clr-primary-1);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-submit:hover {
+  background: var(--clr-primary-1);
+  color: var(--clr-primary-5);
+}
+/* now i am going to set 2 column layout for my contact-title and contact-form when my screen is minimum of 992px */
+@media screen and (min-width: 992px) {
+  .contact-center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .contact-form {
+    align-self: flex-start; /*now when we used display flex aour form started stretch which is by default so stop it from stretching we have used align-self:flex start*/
+
+    flex: 1 1 auto; /*grow/strech/auto width*/
+
+    max-width: 100%; /*also we have set max-width of 28rem for small screen we are going to overrite it here*/
+    padding-left: 2rem;
+  }
+}
+/*
+=============== 
+Gallery
+===============
+*/
+/* NOTE :: here we are adding background color to all the image container reason being as we will hover on any image we are going to lower the opacity of image so that our image will blurry because of our background color */
+.gallery-img-container {
+  background: var(--clr-primary-5);
+  position: relative; /*since we are going to add search icon with position absolute in center of image */
+}
+.gallery-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 2rem;
+  transform: translate(-50%, -50%);
+  color: white;
+  opacity: 0;
+  transition: var(--transition);
+}
+.gallery-img {
+  height: 17rem;
+  -o-object-fit: cover;
+  object-fit: cover;
+  transition: var(--transition);
+}
+/* now as am hovering on my container am going to mention what should happen to my galler image */
+.gallery-img-container:hover .gallery-img {
+  opacity: 0.5; /*here we are blurring our image to have tranparent kind of effect*/
+}
+/* now as am hovering on my container am going to mention what should happen to my galler icon */
+.gallery-img-container:hover .gallery-icon {
+  opacity: 1; /*initially we have our icon transparent but when we hover on our container we wan to show our icon */
+}
+
+/* now we are going to make 2 column layout for our gallery image */
+@media screen and (min-width: 768px) {
+  .gallery-center {
+    display: flex;
+    flex-wrap: wrap;
+    /* align-items: flex-start; */
+  }
+  .gallery-img-container {
+    flex: 0 0 50%;
+  }
+  .gallery-img {
+    height: auto; /*as we have given height as 17rem earlier which i am making auto to fit it proper in container*/
+  }
+}
+
+/* now we are going to make 4 column layout for our gallery image */
+@media screen and (min-width: 992px) {
+  .gallery-center {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .gallery-img-container {
+    flex: 0 0 25%;
+  }
+}
+/*
+=============== 
+Footer
+===============
+*/
+.footer {
+  background: var(--clr-grey-1);
+  text-align: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  color: var(--clr-white);
+}
+
+/* here we are displaying our links and icons in row using display flex */
+.footer-links,
+.footer-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.footer-link {
+  color: var(--clr-white);
+  text-transform: capitalize;
+  margin-right: 1rem;
+  font-size: 1rem;
+  letter-spacing: var(--spacing);
+  transition: var(--transition);
+}
+.footer-link:hover {
+  color: var(--clr-primary-5);
+}
+.footer-icon {
+  color: var(--clr-primary-8);
+  margin-right: 1rem;
+  font-size: 2rem;
+  transition: var(--transition);
+}
+.footer-icon:hover {
+  color: var(--clr-primary-5);
+}
+.copyright {
+  color: var(--clr-white);
+  text-transform: capitalize;
+  letter-spacing: var(--spacing);
+}
+
+/* NOW we are done development of all the sections, now we are going to work on navbar html */
